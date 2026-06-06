@@ -54,6 +54,22 @@ npx ra-localization einvoice invoice.json
 | `vatReturn.js` | The unified VAT/excise return: `computeVatReturn`, `vatReturnForm` mapped to the **official line numbers**, and `validateVatReturnForm` (cross-foot tie-out, integer/non-negative checks). |
 | `armeniaPayroll.js` | 2026 gross→net: income tax 20%, tiered funded pension, flat military stamp duty, mandatory health insurance. |
 
+## Consumed by
+
+This repo is the **source of truth**; products consume it by **vendoring** (copy
+`index.js` + `src/` into a `vendor/` dir, require by relative path — not an npm
+dependency, to keep the local-first / self-hostable model). See
+[INTEGRATION.md](./INTEGRATION.md) for the recipe.
+
+| Product | Status |
+|---------|--------|
+| **A1 Suite** (`A1-Suite-Local`) | ✅ Vendored at `server/vendor/a1-localization-am/`; seven `server/<engine>.js` re-export shims; mounted via `server/localizationRoutes.js`. |
+| **HayHashvapah** (`A1-SMB-HH-HY`) | ⏳ Convergence target — still on its in-tree UMD `*.shared.js` lineage. Needs a UMD/browser build first (its fiscal modules load in the browser PWA). Server-side adoption can land behind a thin payroll adapter. |
+| Future A1 products | Vendor as above. |
+
+> **Fixes land here first**, then re-vendor into consumers — patching a vendored copy
+> re-introduces the drift this extraction removed.
+
 ## Official sources
 
 - **Chart of accounts** — RA MoF order, [arlis.am/acts/75961](https://www.arlis.am/hy/acts/75961) (commercial orgs). 623 accounts / 9 classes.
