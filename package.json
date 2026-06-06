@@ -1,0 +1,37 @@
+{
+  "name": "a1-localization-am",
+  "version": "1.0.0",
+  "description": "Armenian (RA) localization + fiscal engines — ՀՎՀՀ/AMD kernel, marz + phone dictionaries, 623-account chart of accounts, SRC e-invoice XML, VAT return (decree N 298-Ն), and 2026 payroll. Zero runtime dependencies.",
+  "main": "index.js",
+  "bin": {
+    "ra-localization": "scripts/ra-localization.js"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=4 --test-timeout=60000"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "scripts/"
+  ],
+  "keywords": [
+    "armenia",
+    "armenian",
+    "localization",
+    "l10n",
+    "fiscal",
+    "tax",
+    "vat",
+    "payroll",
+    "e-invoice",
+    "hvhh",
+    "amd",
+    "chart-of-accounts",
+    "ra"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
