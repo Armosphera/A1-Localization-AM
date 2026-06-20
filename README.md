@@ -96,3 +96,18 @@ npm test
 
 Pure-function unit tests via the Node built-in runner (capped concurrency to
 stay light on constrained machines). No server boot, no database, no network.
+
+## Karpathy evals
+
+This repo can run A1 product-research eval lanes through the shared
+`../../A1-AI-Core` runner in the local Armosphera workspace:
+
+```
+node scripts/karpathy-eval.mjs --list
+node scripts/karpathy-eval.mjs --program vat-return-contract
+node scripts/karpathy-eval.mjs --run vat-return-contract
+```
+
+The `vat-return-contract` lane verifies the Armenian VAT-return engine:
+period totals, official form-line mapping, payable/recoverable reconciliation,
+fail-closed form validation, whole-dram constraints, and rate-sanity guards.

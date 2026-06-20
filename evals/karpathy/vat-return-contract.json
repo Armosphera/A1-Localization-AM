@@ -1,0 +1,43 @@
+{
+  "id": "vat-return-contract",
+  "productName": "Armosphera A1 Localization AM VAT return engine",
+  "runTag": "2026-06-20-vat-return-contract",
+  "branchPrefix": "karpathy/",
+  "editableFiles": [
+    "src/vatReturn.js"
+  ],
+  "readOnlyFiles": [
+    "scripts/check-vat-return-contract.mjs",
+    "test/vat-return.test.js",
+    "test/vat-return-rate-sanity.test.js",
+    "test/vat-return-reconciliation.test.js",
+    "test/vat-return-validate.test.js"
+  ],
+  "contextFiles": [
+    "README.md",
+    "INTEGRATION.md",
+    "src/localization.js",
+    "src/vatReturn.js"
+  ],
+  "guardrails": [
+    "Keep VAT return computations pure, dependency-free, and offline; do not add network, filesystem, or environment reads.",
+    "Do not change official source metadata or line numbers without updating primary-source citations and focused tests.",
+    "Keep computeVatReturn and vatReturnForm reconciled for payable, recoverable, and empty periods.",
+    "Keep validateVatReturnForm fail-closed: malformed forms return structured errors and never throw.",
+    "Keep whole-dram integer validation and rate-sanity guards in place for official VAT-return line edits."
+  ],
+  "eval": {
+    "command": "node",
+    "args": [
+      "scripts/check-vat-return-contract.mjs"
+    ],
+    "metric": {
+      "name": "failing_checks",
+      "direction": "minimize"
+    },
+    "successMetricValue": 0,
+    "failureMetricValue": 1,
+    "timeBudgetMinutes": 5,
+    "timeoutMinutes": 10
+  }
+}
