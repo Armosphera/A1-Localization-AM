@@ -42,16 +42,20 @@ jobs:
 
       - name: Verify tests touched every public module
         run: |
-          # Sanity check: each src/*.js file should be required by at least one test.
+          # Sanity check: each non-data src/*.js file should be required by at least one test.
+          # Skip *.data.js (pure data tables — tested transitively through the consumer module).
           missing=""
           for src in src/*.js; do
             base=$(basename "$src")
+            case "$base" in
+              *.data.js) continue ;;
+            esac
             if ! grep -rl "require.*${base%.js}" test/ >/dev/null 2>&1; then
               missing="$missing $base"
             fi
           done
           if [ -n "$missing" ]; then
-            echo "ERROR: these src modules have no test coverage: $missing"
+            echo "ERROR: these src modules have no direct test coverage: $missing"
             exit 1
           fi
-          echo "All public modules are covered by tests."
+          echo "All non-data public modules are covered by tests."
