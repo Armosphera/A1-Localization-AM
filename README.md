@@ -52,6 +52,7 @@ npx ra-localization einvoice invoice.json
 | `armeniaChartOfAccounts.js` + `.data.js` | The **623-account, 9-class** RA chart of accounts; leading digit ⇒ class ⇒ normal balance. |
 | `einvoice.js` | SRC e-invoice (հաշիվ-ապրանքագիր): `buildEInvoiceXml` (emits mandatory `Գործարքի տեսակ` / transaction type, buyer ՀՎՀՀ or passport) + `validateEInvoice`, a fail-closed compliance gate. |
 | `vatReturn.js` | The unified VAT/excise return: `computeVatReturn`, `vatReturnForm` mapped to the **official line numbers**, and `validateVatReturnForm` (cross-foot tie-out, integer/non-negative checks). |
+| `pension_am.js` | Հայաստանի funded pension (RA Tax Code Art. 156 + Decree N 1332-Ն): tiered (5% / 10%−25k / capped 87,500) per Decree N 1332-Ն. Pure functions, whole AMD rounding. |
 | `armeniaPayroll.js` | 2026 gross→net: income tax 20%, tiered funded pension, flat military stamp duty, mandatory health insurance. |
 
 ## Consumed by
