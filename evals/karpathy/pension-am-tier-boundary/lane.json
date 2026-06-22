@@ -1,0 +1,22 @@
+{
+  "name": "pension-am-tier-boundary",
+  "version": "1.0.0",
+  "module": "src/pension_am.js",
+  "exports_required": ["PENSION_AM_2026", "pensionAmTier", "pensionAmMonthly", "pensionAmAnnual"],
+  "behaviors": [
+    "PENSION_AM_2026 constants: LOW_CEIL=500000, CAP_THRESHOLD=1125000, CAP=87500, LOW_RATE=5, HIGH_RATE=10, HIGH_OFFSET=25000",
+    "CAP_THRESHOLD is exactly 15x minimum wage (75,000 AMD)",
+    "pensionAmTier(0) = 0 and pensionAmTier(-1) = 0 and pensionAmTier(NaN) = 0",
+    "Low tier (g ≤ 500,000): 5% × g → integer AMD",
+    "Middle tier (500k < g ≤ 1.125M): 10% × g - 25,000 → integer AMD",
+    "High tier (g > 1.125M): capped at 87,500",
+    "Continuity at 500,000 boundary: diff ≤ 1 AMD (Math.round handles float drift)",
+    "Continuity at 1,125,000 boundary: exact equality (cap catches both sides)",
+    "pensionAmMonthly and pensionAmAnnual delegate correctly to pensionAmTier",
+    "pension_am.js has NO network require (sovereign/offline-capable)",
+    "pension_am.js has NO fs require (pure functions only)"
+  ],
+  "frozen_as_of": "2026-06-22",
+  "rationale": "Wrong numbers = tax liabilities. Tier boundaries + rates are per RA Tax Code Art. 156 + Decree N 1332-Ն.",
+  "consumers": ["A1-Suite-Local-ANT (vendored)", "A1-Suite-Local-MAX (vendored)", "A1-AI-ERP-SBOS-MSTUDIO-sovereign (vendored)", "SBOS-A1-ERP (vendored)"]
+}
