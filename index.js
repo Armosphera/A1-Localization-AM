@@ -15,6 +15,7 @@ module.exports = {
   regions: require("./src/armeniaRegions"),
   chartOfAccounts: require("./src/armeniaChartOfAccounts"),
   payroll: require("./src/armeniaPayroll"),
+  pension_am: require("./src/pension_am"), // Հայաստանի կուտակային վճար (RA Tax Code Art. 156)
   vatReturn: require("./src/vatReturn"),
   einvoice: require("./src/einvoice"),
 };
